@@ -1,8 +1,8 @@
-streamlit
-streamlit-drawable-canvas
-torch
-torchvision
+fastapi
+uvicorn
+onnxruntime
 numpy
 pillow
 joblib
 python-multipart
+python-dotenv

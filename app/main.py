@@ -4,9 +4,13 @@ from fastapi.responses import JSONResponse
 from typing import List
 from PIL import Image
 import io
-from predict import predict_from_images
+from helper.predict import predict_from_images
 
-app = FastAPI()
+app = FastAPI(
+    title="Aksara Jawa API",
+    description="API for Aksara Jawa",
+    version="1.0.0"
+)
 
 app.add_middleware(
     CORSMiddleware,
@@ -15,6 +19,10 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+@app.get("/")
+async def root():
+    return {"message": "Welcome to Aksara Jawa API"}
 
 @app.post("/predict")
 async def predict(files: List[UploadFile] = File(...)):
