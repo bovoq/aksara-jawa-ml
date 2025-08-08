@@ -5,6 +5,7 @@ from typing import List
 from PIL import Image
 import io
 from helper.predict import predict_from_images
+from helper.config import get_allowed_origins
 
 app = FastAPI(
     title="Aksara Jawa API",
@@ -14,7 +15,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=get_allowed_origins(),
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

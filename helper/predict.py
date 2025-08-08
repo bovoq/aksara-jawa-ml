@@ -1,7 +1,8 @@
 import onnxruntime as ort
 import numpy as np
-from PIL import Image
 import joblib
+from PIL import Image
+from helper.loader import load_model
 
 # === Konfigurasi ===
 IMAGE_SIZE = (64, 64)
@@ -13,13 +14,13 @@ IDX2TOKEN = joblib.load("./utils/idx2token.pkl")
 
 # === Transformasi manual ===
 def preprocess_image(image: Image.Image) -> np.ndarray:
-    image = image.convert('L')  # Grayscale
+    image = image.convert('L')
     image = image.resize(IMAGE_SIZE)
-    image_np = np.array(image, dtype=np.float32) / 255.0  # Normalisasi ke [0, 1]
-    return image_np[np.newaxis, :, :]  # Tambahkan channel dimension: [1, H, W]
+    image_np = np.array(image, dtype=np.float32) / 255.0
+    return image_np[np.newaxis, :, :]
 
 # === Load ONNX model ===
-onnx_session = ort.InferenceSession("./model/aksara_model.onnx")
+onnx_session = load_model()
 
 # === Fungsi Prediksi ===
 def predict_from_images(images: list[Image.Image]) -> list[str]:
