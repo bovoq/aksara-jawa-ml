@@ -14,10 +14,9 @@ def load_model():
     if not os.path.exists(MODEL_PATH):
         print("🔽 Model not found. Downloading from Google Drive...")
         url = f"https://drive.google.com/uc?id={GDRIVE_FILE_ID}"
-        gdown.download(url, MODEL_PATH, quiet=False)
+        gdown.download(url, MODEL_PATH, use_cookies=False, quiet=False)
     else:
         print("✅ Model found in /tmp. Skipping download.")
 
-    # Load ONNX model
     session = ort.InferenceSession(MODEL_PATH)
     return session
