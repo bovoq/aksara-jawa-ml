@@ -1,7 +1,7 @@
 fastapi
 uvicorn
 onnxruntime
-numpy
+numpy==1.26.4
 pillow
 joblib
 python-multipart
