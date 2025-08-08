@@ -8,6 +8,8 @@ load_dotenv()
 MODEL_PATH = "/tmp/aksara_model.onnx"
 GDRIVE_FILE_ID = os.getenv("GDRIVE_FILE_ID")
 
+os.environ["GDOWN_CACHE_DIR"] = "/tmp"
+
 def load_model():
     if not os.path.exists(MODEL_PATH):
         print("🔽 Model not found. Downloading from Google Drive...")
