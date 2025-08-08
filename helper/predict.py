@@ -6,7 +6,7 @@ from helper.loader import load_model
 
 # === Konfigurasi ===
 IMAGE_SIZE = (64, 64)
-MAX_SEQ_LEN = 4
+MAX_SEQ_LEN = 20
 
 # === Tokenizer ===
 TOKEN2IDX = joblib.load("./utils/token2idx.pkl")
@@ -46,4 +46,5 @@ def predict_from_images(images: list[Image.Image]) -> list[str]:
         if idx not in [TOKEN2IDX['<PAD>'], TOKEN2IDX['<SOS>'], TOKEN2IDX['<EOS>']]
     ]
     return tokens
+
 
