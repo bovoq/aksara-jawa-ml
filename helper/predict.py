@@ -6,7 +6,7 @@ from helper.loader import load_model
 
 # === Konfigurasi ===
 IMAGE_SIZE = (64, 64)
-MAX_SEQ_LEN = 20
+MAX_SEQ_LEN = 4
 
 # === Tokenizer ===
 TOKEN2IDX = joblib.load("./utils/token2idx.pkl")

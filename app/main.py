@@ -27,6 +27,16 @@ async def root():
 
 @app.post("/predict")
 async def predict(files: List[UploadFile] = File(...)):
+    MAX_SEQ_LEN = 4
+
+    if len(files) > MAX_SEQ_LEN:
+        return JSONResponse(
+            status_code=400,
+            content={
+                "error": f"Jumlah maksimal gambar adalah {MAX_SEQ_LEN}"
+            }
+        )
+
     try:
         images = []
         for file in files:
